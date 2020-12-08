@@ -28,13 +28,12 @@ model = fc1.fc1().to(device)
 x = torch.randn(1,3,32,32).to(device)
 
 summary(model,x)
+print(model.state_dict())
 
 model_file = "/data/Lottery-Ticket-Hypothesis-in-Pytorch/saves/fc1/mnist/1_model_lt.pth.tar"
 model_parameters = torch.load(model_file)
+print(model_parameters)
+
 model.load_state_dict(model_parameters)
 x = torch.randn(1,3,32,32).to(device)
-
 summary(model,x)
-
-
-
