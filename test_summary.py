@@ -25,7 +25,16 @@ from torchsummaryX import summary
 from archs.cifar100 import AlexNet, fc1, LeNet5, vgg, resnet
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = fc1.fc1().to(device)
-x = torch.randn(1,1,32,32)
+x = torch.randn(1,3,32,32).to(device)
+
 summary(model,x)
+
+model_file = "/data/Lottery-Ticket-Hypothesis-in-Pytorch/saves/fc1/mnist/1_model_lt.pth.tar"
+model_parameters = torch.load(model_file)
+model.load_state_dict(model_parameters)
+x = torch.randn(1,3,32,32).to(device)
+
+summary(model,x)
+
 
 
